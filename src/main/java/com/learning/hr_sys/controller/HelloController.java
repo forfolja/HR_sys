@@ -9,10 +9,11 @@ public class HelloController
     public String Hello(){
         return "Hello";
     }
-    @RequestMapping("/AddEmployee")
+ /*   @RequestMapping("/AddEmployee")
     public String AddEmployee() {
             return employeeID;
     }
 
+  */
 
 }
