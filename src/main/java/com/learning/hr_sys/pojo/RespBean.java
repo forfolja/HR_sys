@@ -1,5 +1,5 @@
 package com.learning.hr_sys.pojo;
-
+//貌似是比较通用的前端返回实体类，返回请求结果，直接照抄了
 public class RespBean {
     private Integer status;
     private String msg;

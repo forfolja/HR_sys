@@ -1,8 +1,13 @@
 package com.learning.hr_sys.pojo;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+@Data
 public class Jobtitle {
 
-    private String jobtitleID;
+    private Integer jobtitleID;
     private String jobType;
     private String jobtitleName;
     @Override
@@ -18,5 +23,5 @@ public class Jobtitle {
     }
     private int jobtitleLevel;
     private double jobtitleBonusIndex;
-    private enum jobtitleStatus{Active,Inactive};
+    private boolean jobtitleStatus;
 }

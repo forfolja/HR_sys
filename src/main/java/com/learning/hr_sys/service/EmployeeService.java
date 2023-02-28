@@ -1,10 +1,7 @@
 package com.learning.hr_sys.service;
 
-import com.learning.hr_sys.Mapper.EmployeeMapper;
-import com.learning.hr_sys.Mapper.JobtitleMapper;
-import com.learning.hr_sys.Mapper.OrganizationMapper;
-import com.learning.hr_sys.Mapper.SalaryMapper;
-import com.learning.hr_sys.pojo.Employee;
+import com.learning.hr_sys.Mapper.*;
+import com.learning.hr_sys.pojo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
@@ -27,6 +24,19 @@ public class EmployeeService {
     public Integer addEmployee(Employee aEmployee)
     {
         Date contractStartingTime = aEmployee.getContractStartingTime();
+
+    }
+
+    public Integer updateEmployee(Employee aEmployee)
+    {
+        Date contractStartingTime = aEmployee.getContractStartingTime();
+        String organizationName = aEmployee
+    }
+
+    public Integer addOganization(Organization aOrganization)
+    {
+        String organizationName = aOrganization.getOrganizationName();
+        Integer organizationID = aOrganization.getorganizationID();
 
     }
 }
