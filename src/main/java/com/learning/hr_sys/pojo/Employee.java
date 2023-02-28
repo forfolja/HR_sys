@@ -1,10 +1,12 @@
 package com.learning.hr_sys.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
 
+@Data
 public class Employee implements Serializable {
     private Integer employeeID;
     private String employeeName;
