@@ -1,6 +1,7 @@
 package com.learning.hr_sys.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 
 import java.util.Date;
 
@@ -18,7 +19,7 @@ public class Employee {
                 ", birthday=" + birthday +
                 ", status=" + employeeStatus +
                 ", phone='" + telNumber + '\'' +
-                ", startingTime='" + startingTime + '\'' +
+                ", contractStartingTime='" + contractStartingTime + '\'' +
                 ", salary='" + totalSalary + '\'' +
                 ", origanization=" + origanizationID +
                 ", jobtotileID=" + jobtitleID +
@@ -29,9 +30,11 @@ public class Employee {
     private enum employeeStatus {Active,Inactive};
     private int telNumber;
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
-    private Date startingTime;
+    private Date contractStartingTime;
     private double totalSalary;
     private int origanizationID;
     private int jobtitleID;
+
+    public Date getContractStartingTime() { return contractStartingTime;}
 }
 
