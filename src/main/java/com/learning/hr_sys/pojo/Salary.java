@@ -1,6 +1,6 @@
 package com.learning.hr_sys.pojo;
 
-import lombok.Data;
+import lombok.*;
 
 @Data
 public class Salary {
