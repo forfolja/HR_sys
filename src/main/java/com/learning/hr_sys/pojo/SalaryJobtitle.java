@@ -6,7 +6,7 @@ public class SalaryJobtitle {
     private Integer salaryId;
     private double salaryBase;
     private double salaryBonus;
-    private  Integer jobtitleID;
+    private  int jobtitleID;
     @Override
     public String toString()
     {

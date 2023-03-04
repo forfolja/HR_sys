@@ -10,7 +10,7 @@ import java.util.List;
 public class Organization implements Serializable {
     private Integer organizationID;
     private String organizationName;
-    private Integer parentID;
+    private int parentID;
     private int organizationStatus;
     @Override
     public String toString()
@@ -19,7 +19,6 @@ public class Organization implements Serializable {
                 "id=" + organizationID +
                 ", name='" + organizationName + '\'' +
                 ", parentOrganization='" + parentID + '\'' +
-                ", birthday=" + birthday +
                 ", status=" + organizationStatus +
                 '}';
     }

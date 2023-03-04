@@ -1,47 +1,59 @@
-/*
-SQLyog Ultimate v12.08 (32 bit)
-MySQL - 8.0.18 : Database - vhr
-*********************************************************************
-*/
-CREATE TABLE `employee` (
-                            `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '员工编号',
-                            `name` varchar(10) DEFAULT NULL COMMENT '员工姓名',
-                            `gender` char(4) DEFAULT NULL COMMENT '性别',
-                            `birthday` date DEFAULT NULL COMMENT '出生日期',
-                            `idCard` char(18) DEFAULT NULL COMMENT '身份证号',
-                            `wedlock` enum('已婚','未婚','离异') DEFAULT NULL COMMENT '婚姻状况',
-                            `nationId` int(8) DEFAULT NULL COMMENT '民族',
-                            `nativePlace` varchar(20) DEFAULT NULL COMMENT '籍贯',
-                            `politicId` int(8) DEFAULT NULL COMMENT '政治面貌',
-                            `email` varchar(20) DEFAULT NULL COMMENT '邮箱',
-                            `phone` varchar(11) DEFAULT NULL COMMENT '电话号码',
-                            `address` varchar(64) DEFAULT NULL COMMENT '联系地址',
-                            `departmentId` int(11) DEFAULT NULL COMMENT '所属部门',
-                            `jobLevelId` int(11) DEFAULT NULL COMMENT '职称ID',
-                            `posId` int(11) DEFAULT NULL COMMENT '职位ID',
-                            `engageForm` varchar(8) DEFAULT NULL COMMENT '聘用形式',
-                            `tiptopDegree` enum('博士','硕士','本科','大专','高中','初中','小学','其他') DEFAULT NULL COMMENT '最高学历',
-                            `specialty` varchar(32) DEFAULT NULL COMMENT '所属专业',
-                            `school` varchar(32) DEFAULT NULL COMMENT '毕业院校',
-                            `beginDate` date DEFAULT NULL COMMENT '入职日期',
-                            `workState` enum('在职','离职') DEFAULT '在职' COMMENT '在职状态',
-                            `workID` char(8) DEFAULT NULL COMMENT '工号',
-                            `contractTerm` double DEFAULT NULL COMMENT '合同期限',
-                            `conversionTime` date DEFAULT NULL COMMENT '转正日期',
-                            `notWorkDate` date DEFAULT NULL COMMENT '离职日期',
-                            `beginContract` date DEFAULT NULL COMMENT '合同起始日期',
-                            `endContract` date DEFAULT NULL COMMENT '合同终止日期',
-                            `workAge` int(11) DEFAULT NULL COMMENT '工龄',
-                            PRIMARY KEY (`id`),
-                            KEY `departmentId` (`departmentId`),
-                            KEY `jobId` (`jobLevelId`),
-                            KEY `dutyId` (`posId`),
-                            KEY `nationId` (`nationId`),
-                            KEY `politicId` (`politicId`),
-                            KEY `workID_key` (`workID`),
-                            CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`departmentId`) REFERENCES `department` (`id`),
-                            CONSTRAINT `employee_ibfk_2` FOREIGN KEY (`jobLevelId`) REFERENCES `joblevel` (`id`),
-                            CONSTRAINT `employee_ibfk_3` FOREIGN KEY (`posId`) REFERENCES `position` (`id`),
-                            CONSTRAINT `employee_ibfk_4` FOREIGN KEY (`nationId`) REFERENCES `nation` (`id`),
-                            CONSTRAINT `employee_ibfk_5` FOREIGN KEY (`politicId`) REFERENCES `politicsstatus` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1942 DEFAULT CHARSET=utf8;
+CREATE TABLE employee(
+                         `id` INT(11) NOT NULL AUTO_INCREMENT,
+                         `employee_id` VARCHAR(20) NOT NULL COMMENT '员工工号',
+                         `employee_name` VARCHAR(30) NOT NULL COMMENT '员工姓名',
+                         `gender` INT(1) NOT NULL COMMENT '性别：0->未选择；1->男；2->女' ,
+                         `birthday` DATE NOT NULL COMMENT '员工生日',
+                         `active_status` INT(2) NOT NULL COMMENT '员工状态：0->初始化；1->正常；2->停用;3->离职'  DEFAULT '0',
+                         `tel_number` INT(11) NOT NULL COMMENT '手机号码',
+                         `contract_starting_time` DATE NOT NULL COMMENT '入职时间',
+                         `organization_id` INT(11) NOT NULL COMMENT '员工属于部门',
+                         `total_salary` DECIMAL(10,2) COMMENT '员工工资',
+                         `job_title_id` INT(2) NOT NULL COMMENT '员工职位',
+                         `create_time` DATETIME NOT NULL COMMENT '创建时间',
+                         `update_time` DATETIME COMMENT '更新时间',
+                         PRIMARY KEY(`id`),
+                         UNIQUE KEY `employeeID` (`employee_id`),
+                         KEY `employeeName` (`employee_name`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE organization(
+                             `id` INT(11) NOT NULL AUTO_INCREMENT,
+                             `organization_id` INT(11) NOT NULL COMMENT '组织编号',
+                             `organization_name` VARCHAR(50) NOT NULL COMMENT '组织名称',
+                             `parent_organization_id` INT(11) COMMENT '上级组织编号',
+                             `organization_status` INT(2) NOT NULL COMMENT '组织状态：0->初始化；1->正常；2->停用;3->归档',
+                             `create_time` DATETIME NOT NULL COMMENT '创建时间',
+                             `update_time` DATETIME COMMENT '更新时间',
+                             PRIMARY KEY(`id`),
+                             UNIQUE KEY `organizationID` (`organization_id`),
+                             KEY `organizationName` (`organization_name`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE jobtitle(
+                         `id` INT(11) NOT NULL AUTO_INCREMENT,
+                         `jobtitle_id` VARCHAR(10)  NOT NULL COMMENT '职位编号',
+                         `jobtitle_type` VARCHAR(6) NOT NULL COMMENT '职位类型：T->技术序列；S->营销序列；F->财务序列；M->管理序列',
+                         `jobtitle_name` VARCHAR(50) NOT NULL COMMENT '职位名称',
+                         `jobtitle_status` INT(2) NOT NULL COMMENT '职位状态：0->初始化；1->正常；2->停用；3->归档' DEFAULT '0',
+                         `jobtitle_level` INT(2) NOT NULL COMMENT '职级',
+                         `create_time` DATETIME NOT NULL COMMENT '创建时间',
+                         `update_time` DATETIME COMMENT '更新时间',
+                         PRIMARY KEY(`id`),
+                         UNIQUE KEY `jobtitleID` (`jobtitle_id`),
+                         KEY `jobtitleName` (`jobtitle_name`),
+                         KEY `jobtitleLevel` (`jobtitle_level`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE salary_jobtitle (
+                                 `id` INT(11) NOT NULL AUTO_INCREMENT,
+                                 `salary_id` INT(10) NOT NULL COMMENT '工资模板编号',
+                                 `salary_base` DECIMAL(10,2) NOT NULL COMMENT '基本工资',
+                                 `salary_bonus` DECIMAL(10,2) NOT NULL COMMENT '绩效工资',
+                                 `jobtitle_id` INT(2) NOT NULL COMMENT '职位编号',
+                                 `create_time` DATETIME NOT NULL COMMENT '创建时间',
+                                 `update_time` DATETIME COMMENT '更新时间',
+                                 PRIMARY KEY(`id`),
+                                 KEY `jobtitleID` (`jobtitle_id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;

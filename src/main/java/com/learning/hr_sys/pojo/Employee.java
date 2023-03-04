@@ -10,7 +10,7 @@ import java.util.Date;
 public class Employee implements Serializable {
     private Integer employeeID;
     private String employeeName;
-    private String gender;
+    private int gender;
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
     private Date birthday;
     private int activeStatus;
