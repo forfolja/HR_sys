@@ -10,8 +10,19 @@ import java.util.List;
 public class Organization implements Serializable {
     private Integer organizationID;
     private String organizationName;
-    private String parentID;
-    private enum organizationStatus{ACTIVE,INACTIVE};
-    private List<Organization> children = new ArrayList<>();
+    private Integer parentID;
+    private int organizationStatus;
+    @Override
+    public String toString()
+    {
+        return "Organization{"+
+                "id=" + organizationID +
+                ", name='" + organizationName + '\'' +
+                ", parentOrganization='" + parentID + '\'' +
+                ", birthday=" + birthday +
+                ", status=" + organizationStatus +
+                '}';
     }
+    private List<Organization> children = new ArrayList<>();
+
 }

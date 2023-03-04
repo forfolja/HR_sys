@@ -19,7 +19,7 @@ public class EmployeeService {
     @Autowired
     OrganizationMapper organizationMapper;
     @Autowired
-    SalaryMapper salaryMapper;
+    SalaryJobtitleMapper salaryJobtitleMapper;
 
     SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
     SimpleDateFormat monthFormat = new SimpleDateFormat("MM");

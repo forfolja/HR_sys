@@ -11,6 +11,15 @@ public class Employee implements Serializable {
     private Integer employeeID;
     private String employeeName;
     private String gender;
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
+    private Date birthday;
+    private int activeStatus;
+    private int telNumber;
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
+    private Date contractStartingTime;
+    private double totalSalary;
+    private int origanizationID;
+    private int jobtitleID;
     @Override
     public String toString()
     {
@@ -27,16 +36,6 @@ public class Employee implements Serializable {
                 ", jobtotileID=" + jobtitleID +
                 '}';
     }
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
-    private Date birthday;
-    private boolean activeStatus;
-    private int telNumber;
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
-    private Date contractStartingTime;
-    private double totalSalary;
-    private int origanizationID;
-    private int jobtitleID;
-
    /*
        由于使用Lombok的Getter、Setter写法，所以暂时不需要按照这种方式来写基础的get、set方法
     public void setEmployeeID(Integer id) { this.employeeID = id; }
