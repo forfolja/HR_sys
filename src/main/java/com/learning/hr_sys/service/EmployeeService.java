@@ -19,7 +19,7 @@ public class EmployeeService {
     @Autowired
     OrganizationMapper organizationMapper;
     @Autowired
-    SalaryMapper salaryMapper;
+    SalaryJobtitleMapper salaryJobtitleMapper;
 
     SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
     SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
@@ -41,7 +41,7 @@ public class EmployeeService {
     public Integer addOganization(Organization aOrganization)
     {
         String organizationName = aOrganization.getOrganizationName();
-        Integer organizationID = aOrganization.getorganizationID();
+        Integer organizationID = aOrganization.getOrganizationID();
 
     }
 }

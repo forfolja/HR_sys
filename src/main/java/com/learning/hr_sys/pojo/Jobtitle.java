@@ -8,6 +8,8 @@ public class Jobtitle {
     private Integer jobtitleID;
     private String jobType;
     private String jobtitleName;
+    private int jobtitleLevel;
+    private int jobtitleStatus;
     @Override
     public String toString()
     {
@@ -19,7 +21,4 @@ public class Jobtitle {
                 ", status=" + jobtitleStatus +
                 '}';
     }
-    private int jobtitleLevel;
-    private double jobtitleBonusIndex;
-    private boolean jobtitleStatus;
 }
